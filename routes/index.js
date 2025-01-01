@@ -17,5 +17,11 @@ routes.use('/setting', require('./settingRoutes'));
 //  Rules Routes
 routes.use('/rules', require('./rulesRoutes'));
 
+//  Footer Routes
+routes.use('/footer', require('./footerRoutes'));
+
+//  Login Routes
+routes.use('/login', require('./loginRoutes'));
+
 
 module.exports = routes;      

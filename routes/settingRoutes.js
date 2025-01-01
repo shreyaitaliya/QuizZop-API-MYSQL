@@ -8,15 +8,15 @@ const fs = require('fs');
 const SettingController = require('../controllers/settingController');
 
 // multer
-const uploadDir = path.join(__dirname, '..', 'uploads');
+const uploadDir = path.join(__dirname, '..', 'uploads', 'settings');
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });
 }
 
 // multer     
-const storage = multer.diskStorage({
+const storage = multer.diskStorage({     
     destination: function (req, file, cb) {
-        cb(null, uploadDir);
+        cb(null, uploadDir);    
     },
     filename: function (req, file, cb) {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);

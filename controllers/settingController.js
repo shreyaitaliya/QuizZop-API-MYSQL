@@ -10,13 +10,6 @@ const AddSetting = async (req, res) => {
     try {
         const { bgcolor, loginbuttoncolor, loginbuttonbordercolor, title, cardcolor, bordercolor, headingtextcolor, textcolor, titlebuttoncolor, correctanscolor, wronganscolor } = req.body;
 
-        if (!req.file) {
-            return res.status(400).send({
-                success: false,
-                message: 'Logo image is required.',
-            });
-        }
-
         let imagePath = "";
         if (req.file) {
             const baseUrl = process.env.IMAGE_URL;
@@ -65,12 +58,13 @@ const GetByAllData = async (req, res) => {
         }
 
         const Data = {
+            id: FindData.id,
             logo: FindData.logo,
+            title: FindData.title,
             themecolor: {
                 bgcolor: FindData.bgcolor,
                 loginbuttoncolor: FindData.loginbuttoncolor,
                 loginbuttonbordercolor: FindData.loginbuttonbordercolor,
-                title: FindData.title,
                 cardcolor: FindData.cardcolor,
                 bordercolor: FindData.bordercolor,
                 headingtextcolor: FindData.headingtextcolor,
@@ -139,16 +133,6 @@ const Update = async (req, res) => {
                 Data
             })
         }
-
-        // let imagePath = Data.logo;
-        // if (req.file) {
-        //     const newImagePath = req.file.path;
-
-        //     if (Data.logo && fs.existsSync(path.resolve(Data.logo))) {
-        //         fs.unlinkSync(path.resolve(Data.logo));
-        //     }
-        //     imagePath = newImagePath;
-        // }
 
         let imagePath = Data.image;
         if (req.file) {

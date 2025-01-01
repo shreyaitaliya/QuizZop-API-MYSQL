@@ -11,16 +11,16 @@ module.exports = (sequelize, DataTypes) => {
         },
         logo: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: true
         },
         bgcolor: {
             type: DataTypes.STRING(50),
             allowNull: true,
             defaultValue: '#191a32',
-        },        
+        },
         loginbuttoncolor: {
             type: DataTypes.STRING(50),
-            allowNull: true,
+            allowNull: true,     
             defaultValue: '#008000',
         },
         loginbuttonbordercolor: {
@@ -71,6 +71,11 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         tableName: 'setting',
         timestamps: false,
+    });
+    setting.beforeCreate((instance) => {
+        if (!instance.logo) {
+            instance.logo = `${process.env.IMAGE_URL}/uploads/settings/logo.png`;
+        }
     });
     return setting;
 };
